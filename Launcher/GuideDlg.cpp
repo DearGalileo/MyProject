@@ -119,69 +119,87 @@ namespace DuiLib
 	// 本函数实现控件与xml中控件的绑定
 	void CGuideDlg::InitControlPtr()
 	{
-		// Botton 控件 骆小俊 2017-9-26
-		struct _BtnNameMap
+		struct _NameMap
 		{
-			CButtonUI** m_ppBtn; LPCTSTR m_pszName;
-		}__BtnNameMap[] =
+			CControlUI** m_ppCtrl; LPCTSTR m_pszName;
+		}__NameMap[] =
 		{
-			{&m_pBtnOK, _T("BtnOK")},
-			{&m_pBtnCancel, _T("BtnCancel")},
+			{ (CControlUI**)(&m_pBtnOK), _T("BtnOK") },
+			{ (CControlUI**)(&m_pBtnCancel), _T("BtnCancel") },
+			{ (CControlUI**)(&m_pOption[0]), _T("m_pOption0") },
+			{ (CControlUI**)(&m_pOption[1]), _T("m_pOption1") },
+			{ (CControlUI**)(&m_pLabel), _T("LabelPicture") },
+			{ (CControlUI**)(&m_pSlider), _T("m_pSlider") },
+			{ (CControlUI**)(&m_pEdit), _T("m_pEdit") },
 		};
-		for (int _i = 0; _i != _countof(__BtnNameMap); ++_i)
+		for (int _i = 0; _i != _countof(__NameMap); ++_i)
 		{
-			*(__BtnNameMap[_i].m_ppBtn) = static_cast<CButtonUI*>(m_PaintManager.FindControl(__BtnNameMap[_i].m_pszName));
+			*(__NameMap[_i].m_ppCtrl) = (m_PaintManager.FindControl(__NameMap[_i].m_pszName));
 		}
-		// Option 控件 骆小俊 2017-9-26
-		struct _OptNameMap
-		{
-			COptionUI** m_ppOpt; LPCTSTR m_pszName;
-		}__OptNameMap[] =
-		{
-			{ &m_pOption[0], _T("m_pOption0") },
-			{ &m_pOption[1], _T("m_pOption1") },
-		};
-		for (int _i = 0; _i != _countof(__OptNameMap); ++_i)
-		{
-			*(__OptNameMap[_i].m_ppOpt) = static_cast<COptionUI*>(m_PaintManager.FindControl(__OptNameMap[_i].m_pszName));
-		}
-		// Label控件  骆小俊 2017-9-26
-		struct _LabelNameMap
-		{
-			CLabelUI** m_ppLabel; LPCTSTR m_pszName;
-		}__LabelNameMap[] = 
-		{
-			{&m_pLabel, _T("LabelPicture")},
-		};
-		for (int _i = 0; _i != _countof(__LabelNameMap); ++_i)
-		{
-			*(__LabelNameMap[_i].m_ppLabel) = static_cast<CLabelUI*>(m_PaintManager.FindControl(__LabelNameMap[_i].m_pszName));
-		}
+		//// Botton 控件 骆小俊 2017-9-26
+		//struct _BtnNameMap
+		//{
+		//	CButtonUI** m_ppBtn; LPCTSTR m_pszName;
+		//}__BtnNameMap[] =
+		//{
+		//	{&m_pBtnOK, _T("BtnOK")},
+		//	{&m_pBtnCancel, _T("BtnCancel")},
+		//};
+		//for (int _i = 0; _i != _countof(__BtnNameMap); ++_i)
+		//{
+		//	*(__BtnNameMap[_i].m_ppBtn) = static_cast<CButtonUI*>(m_PaintManager.FindControl(__BtnNameMap[_i].m_pszName));
+		//}
+		//// Option 控件 骆小俊 2017-9-26
+		//struct _OptNameMap
+		//{
+		//	COptionUI** m_ppOpt; LPCTSTR m_pszName;
+		//}__OptNameMap[] =
+		//{
+		//	{ &m_pOption[0], _T("m_pOption0") },
+		//	{ &m_pOption[1], _T("m_pOption1") },
+		//};
+		//for (int _i = 0; _i != _countof(__OptNameMap); ++_i)
+		//{
+		//	*(__OptNameMap[_i].m_ppOpt) = static_cast<COptionUI*>(m_PaintManager.FindControl(__OptNameMap[_i].m_pszName));
+		//}
+		//// Label控件  骆小俊 2017-9-26
+		//struct _LabelNameMap
+		//{
+		//	CLabelUI** m_ppLabel; LPCTSTR m_pszName;
+		//}__LabelNameMap[] = 
+		//{
+		//	{&m_pLabel, _T("LabelPicture")},
+		//};
+		//for (int _i = 0; _i != _countof(__LabelNameMap); ++_i)
+		//{
+		//	*(__LabelNameMap[_i].m_ppLabel) = static_cast<CLabelUI*>(m_PaintManager.FindControl(__LabelNameMap[_i].m_pszName));
+		//}
 
-		// Slider控件  骆小俊 2017-9-26
-		struct _SliderNameMap
-		{
-			CSliderUI** m_ppSlider; LPCTSTR m_pszName;
-		}__SliderNameMap[] =
-		{
-			{ &m_pSlider, _T("m_pSlider") },
-		};
-		for (int _i = 0; _i != _countof(__SliderNameMap); ++_i)
-		{
-			*(__SliderNameMap[_i].m_ppSlider) = static_cast<CSliderUI*>(m_PaintManager.FindControl(__SliderNameMap[_i].m_pszName));
-		}
-		// Edit控件  骆小俊 2017-9-26
-		struct _EditNameMap
-		{
-			CEditUI** m_ppEditUI; LPCTSTR m_pszName;
-		}__EditNameMap[] = 
-		{
-			{&m_pEdit, _T("m_pEdit")},
-		};
-		for (int _i = 0; _i != _countof(__EditNameMap); ++_i)
-		{
-			*(__EditNameMap[_i].m_ppEditUI) = dynamic_cast<CEditUI*>(m_PaintManager.FindControl(__EditNameMap[_i].m_pszName));
-		}
+		//// Slider控件  骆小俊 2017-9-26
+		//struct _SliderNameMap
+		//{
+		//	CSliderUI** m_ppSlider; LPCTSTR m_pszName;
+		//}__SliderNameMap[] =
+		//{
+		//	{ &m_pSlider, _T("m_pSlider") },
+		//};
+		//for (int _i = 0; _i != _countof(__SliderNameMap); ++_i)
+		//{
+		//	*(__SliderNameMap[_i].m_ppSlider) = static_cast<CSliderUI*>(m_PaintManager.FindControl(__SliderNameMap[_i].m_pszName));
+		//}
+		//// Edit控件  骆小俊 2017-9-26
+		//struct _EditNameMap
+		//{
+		//	CEditUI** m_ppEditUI; LPCTSTR m_pszName;
+		//}__EditNameMap[] = 
+		//{
+		//	{&m_pEdit, _T("m_pEdit")},
+		//};
+		//for (int _i = 0; _i != _countof(__EditNameMap); ++_i)
+		//{
+		//	*(__EditNameMap[_i].m_ppEditUI) = dynamic_cast<CEditUI*>(m_PaintManager.FindControl(__EditNameMap[_i].m_pszName));
+		//}
+		// Botton 控件 骆小俊 2017-9-26
 	}
 }
 // 其他：
